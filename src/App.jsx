@@ -1,7 +1,18 @@
 import "./App.css";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Search from "./components/Search";
+import Trending from "./components/Trending";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    <>
+      <Navbar />
+      <Hero />
+      <Search />
+      <Trending />
+    </>
+  );
 }
 
 export default App;

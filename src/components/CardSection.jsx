@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const CardSection = ({ searchResults, searchTerm }) => {
+const CardSection = ({ searchResults }) => {
   const [loading, setLoading] = useState(true);
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -10,7 +12,6 @@ const CardSection = ({ searchResults, searchTerm }) => {
         setLoading(false);
       }, 1000);
     };
-
     fetchData();
   }, []);
 
@@ -28,14 +29,16 @@ const CardSection = ({ searchResults, searchTerm }) => {
       ) : searchResults.length === 0 ? (
         <div className="text-center w-full flex items-center justify-center mt-16">
           <p className="p-8 w-[30%] rounded-lg backdrop-blur-xl bg-[#D9D9D91D] border-[#B6B6B66E] border-[4px] text-[#ffffff] text-3xl">
-            {" "}
             No results found!
           </p>
         </div>
       ) : (
         <div className="flex items-center p-12 gap-8 justify-evenly flex-wrap bg-[#ffffff]">
           {searchResults.map((results) => (
-            <Link to={`/search/${searchTerm}/${results.id}`} key={results.id}>
+            <Link
+              to={`/search?search=${search}&openModalId=${results.id}`}
+              key={results.id}
+            >
               <div className="w-[364.59px] h-[278.15px] flex flex-col justify-center cursor-pointer">
                 <img
                   src={results.webformatURL}

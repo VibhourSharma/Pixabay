@@ -26,7 +26,7 @@ const Search = () => {
             className="bg-transparent focus:outline-none ml-3 w-full placeholder:text-[#ffffff] placeholder:font-[600] placeholder:leading-[19.95px] placeholder:text-[17.81px] py-2 md:w-[70%] lg:w-[80%]"
           />
         </div>
-        <Link to={`/search?search=${search}`}>
+        <Link to={search.trim() === "" ? "/" : `/search?search=${search}`}>
           <button className="w-[70.36px] h-[34.73px] border-[2.67px] rounded-[8.91px] sm:w-[30px] sm:text-[11px] md:w-8 md:text-[12px] lg:w-12 xl:w-[60px] xxl:w-[60px]">
             GO!
           </button>

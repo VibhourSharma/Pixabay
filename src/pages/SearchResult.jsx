@@ -1,16 +1,18 @@
-import { useParams, useSearchParams } from "react-router-dom";
-import React from "react";
+import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import Search from "../components/Search";
-import SearchName from "../components/SearchName";
-import SimilarTags from "../components/SimilarTags";
-import CardSection from "../components/CardSection";
+import {
+  CardSection,
+  ImageDetail,
+  Navbar,
+  Search,
+  SearchName,
+  SimilarTags,
+} from "../components";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
-  console.log(search);
+  const openModalId = searchParams.get("openModalId");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
@@ -36,6 +38,15 @@ const SearchResult = () => {
       <SearchName search={search} />
       <SimilarTags searchResults={searchResults} />
       <CardSection searchResults={searchResults} search={search} />
+      {openModalId && (
+        <ImageDetail
+          defaultValue={searchResults.filter(
+            (value) => value.id == openModalId
+          )}
+          isModalOpen={true}
+          id={openModalId}
+        />
+      )}
     </>
   );
 };

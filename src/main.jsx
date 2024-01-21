@@ -1,17 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import HomePage from "./pages/HomePage.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import SearchResult from "./pages/SearchResult.jsx";
+import "./App.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <HomePage />,
   },
   {
     path: "/search",
     element: <SearchResult />,
+    children: [
+      {
+        path: ":search:openModalId",
+        element: <SearchResult />,
+      },
+    ],
   },
 ]);
 

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import React from "react";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
@@ -8,7 +8,9 @@ import SimilarTags from "../components/SimilarTags";
 import CardSection from "../components/CardSection";
 
 const SearchResult = () => {
-  const { search } = useParams();
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search");
+  console.log(search);
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
@@ -20,12 +22,10 @@ const SearchResult = () => {
         const response = await fetch(`${apiUrl}?key=${apiKey}&q=${search}`);
         const searchData = await response.json();
         setSearchResults(searchData.hits);
-        console.log(searchResults);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchData();
   }, [search]);
 

@@ -41,17 +41,17 @@ const ImageDetail = ({ isModalOpen, id, defaultValue }) => {
       {loading ? (
         <div className="fixed top-0 left-0 w-full h-full bg-[#000000] bg-opacity-40 flex items-center justify-center">
           <div className="w-[1217.32px] h-[650px] bg-[#ffffff] rounded-[8.89px]">
-            <div className="w-full h-[76.42px] bg-[#F5F5F5] p-8 rounded-[8.89px] animate-pulse" />
+            <div className="w-full h-[76.42px] bg-gray-200 p-8 rounded-[8.89px] animate-pulse" />
             <div className="w-full p-4 flex justify-evenly">
-              <div className="w-[780px] h-[480px] rounded-[7.11px] bg-[#F0F0F0] animate-pulse" />
+              <div className="w-[780px] h-[480px] rounded-[7.11px] bg-gray-200 animate-pulse" />
               <div>
                 <div>
-                  <span className="w-[103px] h-[52px] font-[500] text-[21.33px] leading-[51.45px] bg-[#F0F0F0] animate-pulse" />
+                  <span className="w-[103px] h-[52px] font-[500] text-[21.33px] leading-[51.45px] bg-gray-200 animate-pulse" />
                   <div className="w-[275.45px] h-[163.73px] text-[14px]">
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 bg-[#F0F0F0] animate-pulse" />
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 bg-[#F0F0F0] animate-pulse" />
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 bg-[#F0F0F0] animate-pulse" />
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 bg-[#F0F0F0] animate-pulse" />
+                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
+                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
+                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
+                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
                   </div>
                   <button className="w-[274.67px] h-[37.33px] rounded-[4.44px] bg-[#F0F0F0] animate-pulse" />
                 </div>

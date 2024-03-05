@@ -9,7 +9,10 @@ const Search = () => {
   const [search, setSearch] = useState(defaultSearch || "");
 
   return (
-    <div className="flex items-center justify-center mt-12 text-[#ffffff]">
+    <div
+      className="flex items-center justify-center mt-12 text-[#ffffff]"
+      data-aos="fade-down"
+    >
       <div className="w-[757.03px] h-[58px] rounded-[8.91px] bg-[#D9D9D91D] backdrop-blur-lg border-[#B6B6B66E] border-[4px] flex items-center sm:w-[300px] md:w-full md:justify-evenly md:items-center lg:w-[500px] xl:w-[600px] xxl:w-[600px]">
         <div className="flex items-center p-2.5 min-w-[90%] md:min-w-12">
           <img

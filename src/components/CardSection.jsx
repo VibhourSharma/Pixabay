@@ -10,7 +10,7 @@ const CardSection = ({ searchResults }) => {
     const fetchData = async () => {
       setTimeout(() => {
         setLoading(false);
-      }, 1000);
+      }, 1500);
     };
     fetchData();
   }, []);
@@ -22,7 +22,7 @@ const CardSection = ({ searchResults }) => {
           {[1, 2, 3, 4, 5, 6].map((placeholderId) => (
             <div
               key={placeholderId}
-              className="w-[364.59px] h-[278.15px] flex flex-col justify-center bg-[#F0F0F0] animate-pulse"
+              className="w-[364.59px] h-[278.15px] flex flex-col justify-center bg-gray-300 animate-pulse"
             />
           ))}
         </div>
@@ -39,7 +39,10 @@ const CardSection = ({ searchResults }) => {
               to={`/search?search=${search}&openModalId=${results.id}`}
               key={results.id}
             >
-              <div className="w-[364.59px] h-[278.15px] flex flex-col justify-center cursor-pointer">
+              <div
+                className="w-[364.59px] h-[278.15px] flex flex-col justify-center cursor-pointer"
+                data-aos="zoom-in"
+              >
                 <img
                   src={results.webformatURL}
                   alt={`Image number: ${results.id}`}

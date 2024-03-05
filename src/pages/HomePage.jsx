@@ -6,27 +6,35 @@ import bg3 from "../assets/bgImages/bg3.jpg";
 import bg4 from "../assets/bgImages/bg4.jpg";
 import bg5 from "../assets/bgImages/bg5.jpg";
 import bg6 from "../assets/bgImages/bg6.jpg";
+import bg7 from "../assets/bgImages/bg7.jpg";
+import bg8 from "../assets/bgImages/bg8.jpg";
 
 function HomePage() {
-  const backgrounds = [bg1, bg2, bg3, bg4, bg5, bg6];
+  const backgrounds = [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8];
   const [currentBackground, setCurrentBackground] = useState(bg1);
 
   useEffect(() => {
-    const interval = setInterval(changeBackground, 6000);
+    const preloadedImages = backgrounds.map((bg) => {
+      const img = new Image();
+      img.src = bg;
+      return img;
+    });
+
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * preloadedImages.length);
+      console.log(randomIndex);
+      setCurrentBackground(preloadedImages[randomIndex].src);
+    }, 5000);
+
     return () => clearInterval(interval);
   }, []);
-
-  const changeBackground = () => {
-    const randomIndex = Math.floor(Math.random() * backgrounds.length);
-    setCurrentBackground(backgrounds[randomIndex]);
-  };
 
   return (
     <div
       className="flex items-center flex-col w-full bg-no-repeat bg-cover min-h-screen"
       style={{
         backgroundImage: `url(${currentBackground})`,
-        transition: "background-image 2s ease",
+        transition: "background-image 2s ease, background-position 0s ease",
       }}
     >
       <Navbar />
@@ -36,4 +44,5 @@ function HomePage() {
     </div>
   );
 }
+
 export default HomePage;

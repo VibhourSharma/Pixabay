@@ -32,16 +32,10 @@ const SearchResult = () => {
     fetchData();
   }, [search]);
 
-  const backgroundImage =
-    searchResults.length === 0
-      ? `url(${bg1})`
-      : `url(${searchResults[0]?.webformatURL})`;
-
   return (
     <div
       style={{
-        backgroundImage: backgroundImage,
-        transition: "background-image 1s ease",
+        backgroundImage: `url(${bg1})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         height: "100vh",

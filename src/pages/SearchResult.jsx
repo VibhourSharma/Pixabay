@@ -8,6 +8,7 @@ import {
   SearchName,
   SimilarTags,
 } from "../components";
+import bg1 from "../assets/bgImages/bg1.jpg";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
@@ -31,8 +32,23 @@ const SearchResult = () => {
     fetchData();
   }, [search]);
 
+  const backgroundImage =
+    searchResults.length === 0
+      ? `url(${bg1})`
+      : `url(${searchResults[0]?.webformatURL})`;
+
   return (
-    <>
+    <div
+      style={{
+        backgroundImage: backgroundImage,
+        transition: "background-image 1s ease",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        height: "100vh",
+        width: "100%",
+        backgroundPosition: "center",
+      }}
+    >
       <Navbar />
       <Search />
       <SearchName search={search} />
@@ -47,7 +63,7 @@ const SearchResult = () => {
           id={openModalId}
         />
       )}
-    </>
+    </div>
   );
 };
 

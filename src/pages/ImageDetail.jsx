@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 const ImageDetail = ({ isModalOpen, id, defaultValue }) => {
   const navigate = useNavigate();
 
-  const [selectedCheckbox, setSelectedCheckbox] = useState("");
-
   function goBack() {
     navigate(-1);
   }
@@ -45,16 +43,7 @@ const ImageDetail = ({ isModalOpen, id, defaultValue }) => {
             <div className="w-full p-4 flex justify-evenly">
               <div className="w-[780px] h-[480px] rounded-[7.11px] bg-gray-200 animate-pulse" />
               <div>
-                <div>
-                  <span className="w-[103px] h-[52px] font-[500] text-[21.33px] leading-[51.45px] bg-gray-200 animate-pulse" />
-                  <div className="w-[275.45px] h-[163.73px] text-[14px]">
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
-                    <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4  bg-gray-200 animate-pulse" />
-                  </div>
-                  <button className="w-[274.67px] h-[37.33px] rounded-[4.44px] bg-[#F0F0F0] animate-pulse" />
-                </div>
+                <button className="w-[274.67px] h-[37.33px] rounded-[4.44px] bg-[#F0F0F0] animate-pulse" />
                 <div className="w-[275.45px] h-[163.73px] text-[14px] mt-2">
                   <span className="w-[103px] h-[52px] font-[500] text-[21.33px] leading-[51.45px] bg-[#F0F0F0] animate-pulse" />
                   <div className="flex items-center justify-between mt-2">
@@ -127,72 +116,6 @@ const ImageDetail = ({ isModalOpen, id, defaultValue }) => {
                     <span className="w-[103px] h-[52px] font-[500] text-[21.33px] leading-[51.45px] sm:h-[12px] sm:text-lg">
                       Download
                     </span>
-                    <div className="w-[275.45px] h-[163.73px] sm:h-[138px] text-[14px] sm:text-sm">
-                      <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 sm:h-2">
-                        <span className="font-[400] leading-[21.33px] w-[119.04px] h-[22px] sm:text-xs">
-                          Small
-                        </span>
-                        <label className="flex items-center justify-between w-28 font-[700] text-[12.44px]">
-                          640x960
-                          <input
-                            type="checkbox"
-                            checked={selectedCheckbox === "Small"}
-                            value="Small"
-                            onChange={(e) =>
-                              setSelectedCheckbox(e.target.value)
-                            }
-                          />
-                        </label>
-                      </div>
-                      <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 sm:h-2">
-                        <span className="font-[400] leading-[21.33px] w-[119.04px] h-[22px]">
-                          Medium
-                        </span>
-                        <label className="flex items-center justify-between w-28 font-[700] text-[12.44px]">
-                          1920x2660
-                          <input
-                            type="checkbox"
-                            checked={selectedCheckbox === "Medium"}
-                            value="Medium"
-                            onChange={(e) =>
-                              setSelectedCheckbox(e.target.value)
-                            }
-                          />
-                        </label>
-                      </div>
-                      <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 sm:h-2">
-                        <span className="font-[400] leading-[21.33px] w-[119.04px] h-[22px]">
-                          Big
-                        </span>
-                        <label className="flex items-center justify-between w-28 font-[700] text-[12.44px]">
-                          2400x3600
-                          <input
-                            type="checkbox"
-                            checked={selectedCheckbox === "Big"}
-                            value="Big"
-                            onChange={(e) =>
-                              setSelectedCheckbox(e.target.value)
-                            }
-                          />
-                        </label>
-                      </div>
-                      <div className="border-[0.89px] border-[#DEE8F4] w-[275.45px] h-[41.11px] flex items-center justify-between p-4 sm:h-2">
-                        <span className="font-[400] leading-[21.33px] w-[119.04px] h-[22px]">
-                          Original
-                        </span>
-                        <label className="flex items-center justify-between w-28 font-[700] text-[12.44px]">
-                          3850x5640
-                          <input
-                            type="checkbox"
-                            checked={selectedCheckbox === "Original"}
-                            value="Original"
-                            onChange={(e) =>
-                              setSelectedCheckbox(e.target.value)
-                            }
-                          />
-                        </label>
-                      </div>
-                    </div>
                     <div className="w-[274.67px] h-[37.33px] rounded-[4.44px] bg-[#4BC34B] text-[#ffffff] mt-5 flex items-center justify-center sm:mt-0">
                       <a href={dataId.webformatURL} download target="_blank">
                         Download for Free!

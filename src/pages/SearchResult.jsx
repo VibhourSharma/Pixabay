@@ -1,14 +1,10 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {
-  CardSection,
-  ImageDetail,
-  Navbar,
-  Search,
-  SearchName,
-  SimilarTags,
-} from "../components";
-import bg1 from "../assets/bgImages/bg1.jpg";
+import CardSection from "../components/Search/CardSection";
+import ImageDetail from "./ImageDetail";
+import Navbar from "../components/Dashboard/Navbar";
+import Search from "../components/Dashboard/Search";
+import SearchName from "../components/Search/SearchName";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
@@ -33,20 +29,12 @@ const SearchResult = () => {
   }, [search]);
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${bg1})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "100vh",
-        width: "100%",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className="bg-black">
       <Navbar />
-      <Search />
+      <div className="mt-[-49px] mb-4">
+        <Search />
+      </div>
       <SearchName search={search} />
-      <SimilarTags searchResults={searchResults} />
       <CardSection searchResults={searchResults} search={search} />
       {openModalId && (
         <ImageDetail

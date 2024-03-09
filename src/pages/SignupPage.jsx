@@ -9,7 +9,7 @@ const SignupForm = () => {
           <div className="p-8">
             <div className="flex w-full justify-between items-center mb-6">
               <h2 className="text-2xl font-bold">Pixabay</h2>
-              <button className="text-blue-500z">Go Back</button>
+              <button className="text-blue-500">Go Back</button>
             </div>
             {/* Sign up with Google */}
             <button className="text-blue-500 border border-blue-500 rounded-full px-4 py-2 w-full flex justify-center items-center gap-2">

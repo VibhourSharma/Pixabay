@@ -1,39 +1,22 @@
 import { useEffect, useState } from "react";
 import CrossIcon from "../assets/CrossIcon.png";
-import { useNavigate } from "react-router-dom";
 
-const ImageDetail = ({ isModalOpen, id, defaultValue }) => {
-  const navigate = useNavigate();
-
-  function goBack() {
-    navigate(-1);
-  }
-
+const ImageDetail = ({ id, handleCloseModal }) => {
   const [idData, setIdData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (defaultValue) {
-      setIdData(defaultValue);
-      setTimeout(() => {
-        setLoading(false);
-      }, 1500);
-      return;
-    }
     const apiUrl = "https://pixabay.com/api/";
     const apiKey = import.meta.env.VITE_PIXABAY_API_KEY;
-
     setLoading(true);
-
     fetch(`${apiUrl}?key=${apiKey}&id=${id}`)
       .then((res) => res.json())
       .then((imageIdData) => {
         setIdData(imageIdData.hits);
         setLoading(false);
       });
-  }, [id, defaultValue]);
+  }, [id]);
 
-  if (!isModalOpen) return null;
   return (
     <>
       {loading ? (
@@ -99,7 +82,7 @@ const ImageDetail = ({ isModalOpen, id, defaultValue }) => {
                 <div className="text-[21.33px] font-[500]">
                   Preview ID: {dataId.id}
                 </div>
-                <button onClick={goBack}>
+                <button onClick={handleCloseModal}>
                   <img src={CrossIcon} alt="back" />
                 </button>
               </div>

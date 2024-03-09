@@ -36,15 +36,7 @@ const SearchResult = () => {
       </div>
       <SearchName search={search} />
       <CardSection searchResults={searchResults} search={search} />
-      {openModalId && (
-        <ImageDetail
-          defaultValue={searchResults.filter(
-            (value) => value.id == openModalId
-          )}
-          isModalOpen={true}
-          id={openModalId}
-        />
-      )}
+      {openModalId && <ImageDetail id={openModalId} />}
     </div>
   );
 };

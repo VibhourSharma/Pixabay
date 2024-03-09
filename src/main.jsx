@@ -16,12 +16,6 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: <SearchResult />,
-    children: [
-      {
-        path: ":search/:openModalId",
-        element: <SearchResult />,
-      },
-    ],
   },
 ]);
 

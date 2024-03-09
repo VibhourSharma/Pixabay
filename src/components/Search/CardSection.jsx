@@ -1,11 +1,10 @@
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CardLayout from "./CardLayout";
 
 const CardSection = ({ searchResults }) => {
   const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
-  const search = searchParams.get("search");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +19,7 @@ const CardSection = ({ searchResults }) => {
     <>
       {loading ? (
         <div className="flex items-center p-8 gap-4 flex-wrap justify-center bg-[#ffffff]">
-          {[1, 2, 3, 4, 5, 6].map((placeholderId) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((placeholderId) => (
             <div
               key={placeholderId}
               className="w-[364.59px] h-[278.15px] flex flex-col justify-center bg-gray-300 animate-pulse"
@@ -34,7 +33,7 @@ const CardSection = ({ searchResults }) => {
           </p>
         </div>
       ) : (
-        <CardLayout searchResults={searchResults} search={search} />
+        <CardLayout searchResults={searchResults} />
       )}
     </>
   );

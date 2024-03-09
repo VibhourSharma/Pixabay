@@ -74,7 +74,6 @@ const ImageType = () => {
       <CategorySearch />
       <CardLayout
         searchResults={searchResults}
-        selectedType={selectedType}
         imageTypes={imageTypes.names}
         isHomePage={true}
       />

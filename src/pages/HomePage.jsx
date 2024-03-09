@@ -11,20 +11,20 @@ function HomePage() {
   const backgrounds = [bg1, bg2, bg4, bg5, bg6, bg7, bg8];
   const [currentBackground, setCurrentBackground] = useState(bg1);
 
-  // useEffect(() => {
-  //   const preloadedImages = backgrounds.map((bg) => {
-  //     const img = new Image();
-  //     img.src = bg;
-  //     return img;
-  //   });
+  useEffect(() => {
+    const preloadedImages = backgrounds.map((bg) => {
+      const img = new Image();
+      img.src = bg;
+      return img;
+    });
 
-  //   const interval = setInterval(() => {
-  //     const randomIndex = Math.floor(Math.random() * preloadedImages.length);
-  //     setCurrentBackground(preloadedImages[randomIndex].src);
-  //   }, 5000);
+    const interval = setInterval(() => {
+      const randomIndex = Math.floor(Math.random() * preloadedImages.length);
+      setCurrentBackground(preloadedImages[randomIndex].src);
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, []);
+    return () => clearInterval(interval);
+  }, []);
   return (
     <>
       <div

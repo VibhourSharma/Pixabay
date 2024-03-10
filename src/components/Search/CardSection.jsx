@@ -18,7 +18,7 @@ const CardSection = ({ searchResults }) => {
     <>
       {loading ? (
         <div className="flex items-center p-8 gap-4 flex-wrap justify-center bg-white">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map((placeholderId) => (
+          {[...Array(8)].map((placeholderId) => (
             <div
               key={placeholderId}
               className="w-[350px] h-[250px] flex flex-col justify-center bg-gray-300 animate-pulse"

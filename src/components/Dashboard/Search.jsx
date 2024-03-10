@@ -7,30 +7,54 @@ const Search = () => {
   const [searchParams] = useSearchParams();
   const defaultSearch = searchParams.get("search");
   const [search, setSearch] = useState(defaultSearch || "");
+  const [searchType, setSearchType] = useState("Images");
+
+  const handleSearchTypeChange = (e) => {
+    setSearchType(e.target.value);
+  };
+
+  const placeholderText =
+    searchType === "Images" ? "Search for Images..." : "Search for videos...";
 
   return (
-    <div
-      className="flex items-center justify-center mt-12 text-[#ffffff]"
-      data-aos="fade-down"
-    >
-      <div className="w-[757.03px] h-[54px] rounded-2xl bg-[#D9D9D91D] backdrop-blur-2xl border-[#B6B6B66E] border-[4px] flex items-center sm:w-[300px] md:w-full md:justify-evenly md:items-center lg:w-[500px] xl:w-[600px] xxl:w-[600px]">
-        <div className="flex items-center p-2.5 min-w-[90%] md:min-w-12">
-          <img
+    <div className="flex items-center justify-center mt-12 text-[#ffffff]">
+      <div className="w-[757.03px] h-[54px] rounded-2xl bg-[#D9D9D91D] backdrop-blur-2xl border-[#B6B6B66E] border-[4px] flex items-center">
+        <div className="flex items-center p-2.5 min-w-[90%]">
+          <select
+            value={searchType}
+            onChange={handleSearchTypeChange}
+            className="mr-3 bg-transparent  focus:outline-none"
+          >
+            <option value="Images" className="text-black">
+              Images
+            </option>
+            <option value="videos" className="text-black">
+              Videos
+            </option>
+          </select>
+          {/* <img
             src={searchIcon}
             alt="searchIcon"
             className="w-[21.38px] h-[21.38px]"
-          />
-          <img src={searchLine} alt="searchLine" className="ml-3" />
+          /> */}
+          <img src={searchLine} alt="searchLine" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value.toLowerCase())}
-            placeholder="Search for photos..."
-            className="bg-transparent focus:outline-none ml-3 w-full placeholder:font-[600] placeholder:leading-[19.95px] placeholder:text-[17.81px] py-2 md:w-[70%] lg:w-[80%]"
+            placeholder={placeholderText}
+            className="bg-transparent focus:outline-none ml-3 w-full placeholder:font-[600] py-2"
           />
         </div>
-        <Link to={search.trim() === "" ? "/" : `/search?search=${search}`}>
-          <button className="w-16 h-[34.73px] border-2 rounded-[8.91px] sm:w-[30px] sm:text-[11px] md:w-8 md:text-[12px] lg:w-12 xl:w-[60px] xxl:w-[60px]">
+
+        <Link
+          to={
+            search.trim() === ""
+              ? "/"
+              : `/search?type=${searchType}&search=${search}`
+          }
+        >
+          <button className="w-16 h-[34.73px] border-2 rounded-[8.91px]">
             Search
           </button>
         </Link>

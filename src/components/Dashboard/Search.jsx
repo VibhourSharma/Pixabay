@@ -1,17 +1,21 @@
-import searchIcon from "../../assets/search-icon.png";
-import searchLine from "../../assets/search-line.png";
 import { Link, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import searchLine from "../../assets/search-line.png";
 
 const Search = () => {
   const [searchParams] = useSearchParams();
   const defaultSearch = searchParams.get("search");
+  const defaultType = searchParams.get("type");
   const [search, setSearch] = useState(defaultSearch || "");
-  const [searchType, setSearchType] = useState("Images");
+  const [searchType, setSearchType] = useState(defaultType || "Images");
 
   const handleSearchTypeChange = (e) => {
     setSearchType(e.target.value);
   };
+
+  useEffect(() => {
+    setSearch(defaultSearch || "");
+  }, [defaultSearch]);
 
   const placeholderText =
     searchType === "Images" ? "Search for Images..." : "Search for videos...";
@@ -32,11 +36,6 @@ const Search = () => {
               Videos
             </option>
           </select>
-          {/* <img
-            src={searchIcon}
-            alt="searchIcon"
-            className="w-[21.38px] h-[21.38px]"
-          /> */}
           <img src={searchLine} alt="searchLine" />
           <input
             type="text"

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import SimilarTags from "./SimilarTags";
-import ImageDetail from "../../pages/ImageDetail";
+import ImageDetail from "../Modal/ImageDetail";
 
 const CardLayout = ({ searchResults, isHomePage }) => {
+  const [modalData, setModalData] = useState({ id: null, type: null });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const allTagsSet = new Set();
   searchResults.forEach((results) => {
     results.tags.split(",").forEach((tag) => {
@@ -10,11 +13,8 @@ const CardLayout = ({ searchResults, isHomePage }) => {
     });
   });
 
-  const [modalOpenId, setModalOpenId] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleImageClick = (id) => {
-    setModalOpenId(id);
+  const handleDataClick = (id, type) => {
+    setModalData({ id, type });
     setIsModalOpen(true);
   };
 
@@ -26,15 +26,19 @@ const CardLayout = ({ searchResults, isHomePage }) => {
 
   return (
     <>
-      {isHomePage ? null : <SimilarTags tags={allTags} />}
+      {!isHomePage && <SimilarTags tags={allTags} />}
       <div className="flex items-center p-8 gap-4 flex-wrap justify-center bg-[#ffffff]">
         {searchResults.map((results) => (
-          <div className="w-[350px] flex flex-col justify-center bg-cover">
+          <div
+            className="w-[350px] flex flex-col justify-center bg-cover"
+            key={results.id}
+          >
             {results.type === "animation" || results.type === "film" ? (
               <video
                 src={results.videos?.tiny?.url}
                 alt={`Video number: ${results.id}`}
                 className="h-[242.61px]"
+                onClick={() => handleDataClick(results.id, results.type)}
                 controls
               />
             ) : (
@@ -42,7 +46,7 @@ const CardLayout = ({ searchResults, isHomePage }) => {
                 src={results.webformatURL}
                 alt={`Image number: ${results.id}`}
                 className="h-[242.61px] object-cover cursor-pointer"
-                onClick={() => handleImageClick(results.id)}
+                onClick={() => handleDataClick(results.id, results.type)}
               />
             )}
             <div className="flex w-full items-center gap-2">
@@ -59,7 +63,11 @@ const CardLayout = ({ searchResults, isHomePage }) => {
         ))}
       </div>
       {isModalOpen && (
-        <ImageDetail id={modalOpenId} handleCloseModal={handleCloseModal} />
+        <ImageDetail
+          id={modalData.id}
+          type={modalData.type}
+          handleCloseModal={handleCloseModal}
+        />
       )}
     </>
   );

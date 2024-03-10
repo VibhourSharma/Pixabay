@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CardSection from "../components/Search/CardSection";
-import ImageDetail from "./ImageDetail";
+import ImageDetail from "../components/Modal/ImageDetail";
 import Navbar from "../components/Dashboard/Navbar";
 import Search from "../components/Dashboard/Search";
 import SearchName from "../components/Search/SearchName";
@@ -9,12 +9,16 @@ import SearchName from "../components/Search/SearchName";
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
   const search = searchParams.get("search");
+  const searchType = searchParams.get("type");
   const openModalId = searchParams.get("openModalId");
   const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const apiUrl = "https://pixabay.com/api/";
+      const apiUrl =
+        searchType === "videos"
+          ? "https://pixabay.com/api/videos/"
+          : "https://pixabay.com/api/";
       const apiKey = import.meta.env.VITE_PIXABAY_API_KEY;
 
       try {
@@ -26,7 +30,7 @@ const SearchResult = () => {
       }
     };
     fetchData();
-  }, [search]);
+  }, [search, searchType]);
 
   return (
     <div className="bg-black">

@@ -3,8 +3,8 @@ import React from "react";
 const SkeletonLoader = () => {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-[#000000] bg-opacity-40 flex items-center justify-center z-20">
-      <div className="w-[1150px] h-auto pb-4 bg-white z-10 rounded-[8.89px] sm:max-w-[90%]">
-        <div className="flex items-center justify-between w-full h-[70px] bg-gray-200 p-8 rounded-[8.89px] animate-pulse"></div>
+      <div className="w-[1100px] h-auto pb-4 bg-white z-10 rounded-[8.89px] sm:max-w-[90%]">
+        <div className="flex items-center justify-between w-full h-[50px] bg-gray-200 p-6 rounded-[8.89px] animate-pulse"></div>
         <div className="w-full p-4 flex justify-evenly flex-wrap sm:flex-col sm:items-center">
           <div
             className="w-[780px] h-[480px] rounded-[7.11px] bg-gray-200 animate-pulse sm:h-[90%]

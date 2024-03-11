@@ -52,7 +52,7 @@ const CardLayout = ({ searchResults, isHomePage }) => {
             <div className="flex w-full items-center gap-2">
               {results.tags.split(",").map((tag) => (
                 <span
-                  className="rounded-md p-1.5 mt-2 bg-[#F5F5F5] text-[13px]"
+                  className="rounded-md p-1.5 mt-2 bg-[#F5F5F5] text-[13px] overflow-hidden"
                   key={tag}
                 >
                   {tag.trim()}

@@ -8,8 +8,8 @@ const Hero = () => {
         Stunning royalty-free images & royalty-free stock
       </p>
       <p className="text-[14px] font-[400]">
-        Over 4.4 million+ high quality stock images, videos and music shared by
-        our talented community.
+        Over 4.4 million+ high quality stock images and videos shared by our
+        talented community.
       </p>
       <Search />
     </div>

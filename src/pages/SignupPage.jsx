@@ -1,15 +1,18 @@
 import React from "react";
 import googleSvg from "../assets/google.svg";
 
-const SignupForm = () => {
+const SignupForm = ({ onClose }) => {
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen">
+        <div className="fixed inset-0 bg-black opacity-65"></div>
         <div className="relative bg-white w-96 rounded-lg shadow-xl">
           <div className="p-8">
             <div className="flex w-full justify-between items-center mb-6">
               <h2 className="text-2xl font-bold">Pixabay</h2>
-              <button className="text-blue-500">Go Back</button>
+              <button className="text-blue-500" onClick={onClose}>
+                Go Back
+              </button>
             </div>
             {/* Sign up with Google */}
             <button className="text-blue-500 border border-blue-500 rounded-full px-4 py-2 w-full flex justify-center items-center gap-2">

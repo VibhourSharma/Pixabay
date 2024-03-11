@@ -28,7 +28,7 @@ const CardSection = ({ searchResults }) => {
       ) : searchResults.length === 0 ? (
         <div className="text-center bg-white w-full flex items-center text-black flex-col">
           <img src={sad} />
-          <p className="text-xl font-semibold mt-4">No results found!</p>
+          <p className="text-xl font-semibold mt-4 mb-12">No results found!</p>
         </div>
       ) : (
         <CardLayout searchResults={searchResults} />

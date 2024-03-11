@@ -3,7 +3,6 @@ import CrossIcon from "../../assets/CrossIcon.png";
 import SkeletonLoader from "../Modal/SkeletonLoader";
 
 const ImageDetail = ({ id, handleCloseModal, type }) => {
-  console.log(type);
   const [idData, setIdData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -44,8 +43,8 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
             key={dataId.id}
             className="fixed top-0 left-0 w-full h-full bg-[#000000] bg-opacity-40 flex items-center justify-center z-20"
           >
-            <div className="w-[1150px] h-auto pb-4 bg-white z-10 rounded-[8.89px] sm:max-w-[90%]">
-              <div className="flex items-center justify-between w-full h-[70px] bg-[#F5F5F5] p-8 rounded-[8.89px]">
+            <div className="w-[1100px] h-auto pb-6 bg-white z-10 rounded-[8.89px] sm:max-w-[90%]">
+              <div className="flex items-center justify-between w-full h-[50px] bg-[#F5F5F5] p-7 rounded-[8.89px]">
                 <div className="text-[21.33px] font-[500]">
                   Preview ID: {dataId.id}
                 </div>
@@ -65,10 +64,10 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                   <img
                     src={dataId.webformatURL}
                     alt="Image"
-                    className="w-[780px] h-[480px]"
+                    className="w-[700px] h-[480px]"
                   />
                 )}
-                <div className="sm:w-[40%] flex flex-col justify-between">
+                <div className="sm:w-[40%] max-w-[30%] flex flex-col justify-between">
                   <div className="flex justify-center gap-4 flex-col">
                     <span className="text-lg font-semibold font-serif">
                       Actions:
@@ -125,8 +124,8 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                       </span>
                     </div>
                   </div>
-                  <div className="flex w-full items-center gap-2">
-                    <span className="text-base font-bold font-serif">
+                  <div className="flex w-full items-center gap-2 flex-wrap">
+                    <span className="text-base font-bold font-serif flex-wrap">
                       Tags:
                     </span>
                     {dataId.tags.split(",").map((idTag) => (

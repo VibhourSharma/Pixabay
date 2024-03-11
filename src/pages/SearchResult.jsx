@@ -5,6 +5,7 @@ import ImageDetail from "../components/Modal/ImageDetail";
 import Navbar from "../components/Dashboard/Navbar";
 import Search from "../components/Dashboard/Search";
 import SearchName from "../components/Search/SearchName";
+import Footer from "../components/Dashboard/Footer";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
@@ -40,6 +41,7 @@ const SearchResult = () => {
       </div>
       <SearchName search={search} />
       <CardSection searchResults={searchResults} search={search} />
+      <Footer />
       {openModalId && <ImageDetail id={openModalId} />}
     </div>
   );

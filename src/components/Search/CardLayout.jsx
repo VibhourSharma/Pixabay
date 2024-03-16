@@ -6,12 +6,15 @@ const CardLayout = ({ searchResults, isHomePage }) => {
   const [modalData, setModalData] = useState({ id: null, type: null });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const allTagsSet = new Set();
-  searchResults.forEach((results) => {
+  const allTagsArray = searchResults.reduce((accumulator, results) => {
     results.tags.split(",").forEach((tag) => {
-      allTagsSet.add(tag.trim());
+      const trimmedTag = tag.trim();
+      if (!accumulator.includes(trimmedTag)) {
+        accumulator.push(trimmedTag);
+      }
     });
-  });
+    return accumulator;
+  }, []);
 
   const handleDataClick = (id, type) => {
     setModalData({ id, type });
@@ -22,7 +25,7 @@ const CardLayout = ({ searchResults, isHomePage }) => {
     setIsModalOpen(false);
   };
 
-  const allTags = Array.from(allTagsSet).slice(0, 10);
+  const allTags = Array.from(allTagsArray).slice(0, 10);
 
   return (
     <>

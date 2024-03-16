@@ -3,8 +3,6 @@ import Navbar from "../components/Dashboard/Navbar";
 import Hero from "../components/Dashboard/Hero";
 import { bg1, bg2, bg4, bg5, bg6, bg7, bg8 } from "../assets/bgImages/bgImage";
 import ImageType from "../components/Dashboard/ImageType";
-import LoginPage from "./LoginPage";
-import SignupPage from "./SignupPage";
 import Footer from "../components/Dashboard/Footer";
 
 function HomePage() {

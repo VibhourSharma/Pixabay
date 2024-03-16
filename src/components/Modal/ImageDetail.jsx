@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import CrossIcon from "../../assets/CrossIcon.png";
 import SkeletonLoader from "../Modal/SkeletonLoader";
+import { useFirebase } from "../../context/Firebase";
 
 const ImageDetail = ({ id, handleCloseModal, type }) => {
   const [idData, setIdData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const firebase = useFirebase();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +26,7 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
 
         setTimeout(() => {
           setLoading(false);
-        }, 1500);
+        }, 1000);
       } catch (error) {
         console.error("Error fetching data:", error);
         setLoading(false);
@@ -32,6 +35,20 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
 
     fetchData();
   }, [id]);
+
+  const handleAddFavorite = () => {
+    const imageId = idData[0]?.id;
+    const imageURL = idData[0]?.webformatURL;
+    const videoURL = idData[0]?.videos?.tiny?.url;
+
+    if (isFavorite) {
+      firebase.removeFromFavorites(imageId);
+    } else {
+      const imageUrlToAdd = imageURL || videoURL;
+      firebase.addToFavorites(imageId, imageUrlToAdd, idData[0]?.type);
+    }
+    setIsFavorite(!isFavorite);
+  };
 
   return (
     <>
@@ -68,17 +85,47 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                   />
                 )}
                 <div className="sm:w-[40%] max-w-[30%] flex flex-col justify-between">
-                  <div className="flex justify-center gap-4 flex-col">
-                    <span className="text-lg font-semibold font-serif">
-                      Actions:
-                    </span>
-                    <button className="w-[274.67px] rounded-lg p-2 bg-white transition-all text-blue-600 text-sm border-blue-600 border hover:text-white hover:bg-blue-500">
-                      🚀 Download for Free
-                    </button>
-                    <button className="w-[274.67px] rounded-lg p-2 bg-white transition-all text-red-500 text-sm border-red-500 border hover:text-white hover:bg-red-500">
-                      💖 Add to Favourites
-                    </button>
-                  </div>
+                  {
+                    <div className="flex justify-center gap-4 flex-col">
+                      <span className="text-lg font-semibold font-serif">
+                        Actions:
+                      </span>
+                      {firebase.isLoggedIn ? (
+                        <>
+                          <button className="w-[274.67px] rounded-lg p-2 bg-white transition-all text-green-600 text-sm border-green-600 border">
+                            🚀 Download for Free
+                          </button>
+                          <button
+                            className={`w-[274.67px] rounded-lg p-2 bg-white text-${
+                              isFavorite ? "red" : "blue"
+                            }-500 text-sm ease-in-out transition-all border-${
+                              isFavorite ? "red" : "blue"
+                            }-600 border`}
+                            onClick={() =>
+                              handleAddFavorite(
+                                idData[0]?.id,
+                                idData[0]?.webformatURL,
+                                idData[0]?.type
+                              )
+                            }
+                          >
+                            {isFavorite
+                              ? "🚩 Remove from Favorites"
+                              : "🤗 Add to Favorites"}
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button className="w-[274.67px] hover:scale-[.98] ease-in-out rounded-lg p-2 bg-white transition-all text-blue-600 text-sm border-blue-600 border">
+                            Login to Download
+                          </button>
+                          <p className="text-sm max-w-56 text-red-500">
+                            *Login or SignUp to Unlock other features
+                          </p>
+                        </>
+                      )}
+                    </div>
+                  }
                   <div className="w-full h-52 text-sm mt-2 sm:mt-0 sm:text-xs">
                     <span className="text-lg font-semibold font-serif">
                       Information:

@@ -7,7 +7,7 @@ import Footer from "../components/Dashboard/Footer";
 
 function HomePage() {
   const backgrounds = [bg1, bg2, bg4, bg5, bg6, bg7, bg8];
-  const [currentBackground, setCurrentBackground] = useState(bg1);
+  const [currentBackground, setCurrentBackground] = useState(bg8);
 
   useEffect(() => {
     const preloadedImages = backgrounds.map((bg) => {
@@ -16,13 +16,15 @@ function HomePage() {
       return img;
     });
 
+    let currentIndex = 0;
     const interval = setInterval(() => {
-      const randomIndex = Math.floor(Math.random() * preloadedImages.length);
-      setCurrentBackground(preloadedImages[randomIndex].src);
+      setCurrentBackground(preloadedImages[currentIndex].src);
+      currentIndex = (currentIndex + 1) % preloadedImages.length;
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <>
       <div

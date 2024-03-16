@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import pixabayLogo from "../../assets/logo.svg";
 import LoginPage from "../../pages/LoginPage";
 import SignupPage from "../../pages/SignupPage";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [signInModalOpen, setSignInModalOpen] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const openLoginModal = () => {
     setLoginModalOpen(true);
@@ -46,6 +47,11 @@ const Navbar = () => {
     }
   }, [firebase.isLoggedIn]);
 
+  const logOut = () => {
+    firebase.logOut();
+    navigate("/");
+  };
+
   return (
     <>
       <div className="flex items-center justify-center w-full text-[#FFFFFF] md:text-[13px] z-10">
@@ -70,7 +76,7 @@ const Navbar = () => {
             {firebase.isLoggedIn ? (
               <button
                 className="py-1.5 px-4 rounded-lg border-2 font[600] md:w-28 lg:w-32"
-                onClick={firebase.logOut}
+                onClick={logOut}
               >
                 Log Out
               </button>

@@ -67,6 +67,23 @@ export const FirebaseProvider = (props) => {
     }
   };
 
+  const getFavoriteImages = async () => {
+    try {
+      if (user) {
+        const userDocRef = doc(firestore, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          return userData.favorites || [];
+        }
+      }
+      return [];
+    } catch (error) {
+      console.error("Error fetching favorite images:", error);
+      throw error;
+    }
+  };
+
   const removeFromFavorites = async (imageId) => {
     try {
       const userDocRef = doc(firestore, "users", user.uid);
@@ -81,6 +98,60 @@ export const FirebaseProvider = (props) => {
       }
     } catch (error) {
       console.error("Error removing from favorites:", error);
+      setError(error.message);
+    }
+  };
+
+  const addToDownloads = async (imageId, imageURL, imageType) => {
+    try {
+      await setDoc(
+        doc(firestore, "users", user.uid),
+        {
+          downloads: arrayUnion({
+            id: imageId,
+            url: imageURL,
+            type: imageType,
+          }),
+        },
+        { merge: true }
+      );
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    }
+  };
+
+  const getDownloads = async () => {
+    try {
+      if (user) {
+        const userDocRef = doc(firestore, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+          return userData.downloads || [];
+        }
+      }
+      return [];
+    } catch (error) {
+      console.error("Error fetching favorite images:", error);
+      throw error;
+    }
+  };
+
+  const removeFromDownloads = async (imageId) => {
+    try {
+      const userDocRef = doc(firestore, "users", user.uid);
+      const userDoc = await getDoc(userDocRef);
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        const downloads = userData.downloads || [];
+        const updatedDownloads = downloads.filter(
+          (download) => download.id !== imageId
+        );
+        await updateDoc(userDocRef, { downloads: updatedDownloads });
+      }
+    } catch (error) {
+      console.error("Error removing from downloads:", error);
       setError(error.message);
     }
   };
@@ -123,23 +194,6 @@ export const FirebaseProvider = (props) => {
 
   const isLoggedIn = user ? true : false;
 
-  const getFavoriteImages = async () => {
-    try {
-      if (user) {
-        const userDocRef = doc(firestore, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
-        if (userDoc.exists()) {
-          const userData = userDoc.data();
-          return userData.favorites || [];
-        }
-      }
-      return [];
-    } catch (error) {
-      console.error("Error fetching favorite images:", error);
-      throw error;
-    }
-  };
-
   return (
     <FirebaseContext.Provider
       value={{
@@ -154,6 +208,9 @@ export const FirebaseProvider = (props) => {
         addToFavorites,
         removeFromFavorites,
         getFavoriteImages,
+        addToDownloads,
+        getDownloads,
+        removeFromDownloads,
       }}
     >
       {props.children}

@@ -7,6 +7,7 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
   const [idData, setIdData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isDownload, setIsDownload] = useState(false);
   const firebase = useFirebase();
 
   useEffect(() => {
@@ -48,6 +49,17 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
       firebase.addToFavorites(imageId, imageUrlToAdd, idData[0]?.type);
     }
     setIsFavorite(!isFavorite);
+  };
+
+  const handleDownload = () => {
+    const imageId = idData[0]?.id;
+    const imageURL = idData[0]?.webformatURL;
+    const videoURL = idData[0]?.videos?.tiny?.url;
+
+    const imageUrlToAdd = imageURL || videoURL;
+    firebase.addToDownloads(imageId, imageUrlToAdd, idData[0]?.type);
+
+    setIsDownload(!isDownload);
   };
 
   return (
@@ -92,14 +104,29 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                       </span>
                       {firebase.isLoggedIn ? (
                         <>
-                          <button className="w-[274.67px] rounded-lg p-2 bg-white transition-all text-green-600 text-sm border-green-600 border">
-                            🚀 Download for Free
+                          <button
+                            className={`hover:scale-[0.98] w-[274.67px] rounded-lg p-2 bg-white text-${
+                              isDownload ? "red" : "blue"
+                            }-600 text-sm ease-in-out transition-all border-${
+                              isDownload ? "red" : "blue"
+                            }-600 border`}
+                            onClick={() =>
+                              handleDownload(
+                                idData[0]?.id,
+                                idData[0]?.webformatURL,
+                                idData[0]?.type
+                              )
+                            }
+                          >
+                            {isDownload
+                              ? "🤩 Downloaded !!!"
+                              : "🚀 Download for Free"}
                           </button>
                           <button
-                            className={`w-[274.67px] rounded-lg p-2 bg-white text-${
-                              isFavorite ? "red" : "blue"
-                            }-500 text-sm ease-in-out transition-all border-${
-                              isFavorite ? "red" : "blue"
+                            className={`hover:scale-[0.98] w-[274.67px] rounded-lg p-2 bg-white text-${
+                              isFavorite ? "red" : "green"
+                            }-600 text-sm ease-in-out transition-all border-${
+                              isFavorite ? "red" : "green"
                             }-600 border`}
                             onClick={() =>
                               handleAddFavorite(

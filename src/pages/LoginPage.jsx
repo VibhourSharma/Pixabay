@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import googleSvg from "../assets/google.svg";
 import { useFirebase } from "../context/Firebase";
 
-const LoginPage = ({ onClose, error }) => {
+const LoginPage = ({ onClose, openSignIn, error }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,16 +13,21 @@ const LoginPage = ({ onClose, error }) => {
     await firebase.logInWithEmailAndPassword(email, password);
   };
 
+  const openSignInModal = () => {
+    onClose();
+    openSignIn();
+  };
+
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       <div className="flex items-center justify-center min-h-screen">
-        <div className="fixed inset-0 bg-black opacity-60"></div>
+        <div className="fixed inset-0 bg-black opacity-65"></div>
         {error && (
           <div className="absolute top-0 z-30 bg-red-500 text-white p-2 rounded-md">
             {error}
           </div>
         )}
-        <div className="relative bg-white w-96 rounded-lg shadow-xl">
+        <div className="relative bg-white w-96 rounded-lg shadow-xl sm:w-[90%]">
           <div className="p-8">
             <div className="flex w-full justify-between items-center mb-6">
               <h2 className="text-2xl font-bold mb-4">Pixabay</h2>
@@ -94,10 +99,9 @@ const LoginPage = ({ onClose, error }) => {
             {/* <!-- Sign up option --> */}
             <p className="text-gray-600 mt-8">
               Don't have an account? Sign up{" "}
-              <a href="#" className="text-blue-500">
+              <p className="text-blue-500" onClick={openSignInModal}>
                 here
-              </a>
-              .
+              </p>
             </p>
           </div>
         </div>

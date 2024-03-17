@@ -52,11 +52,11 @@ const ImageType = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center w-full h-16 bg-transparent text-gray-500 overflow-hidden gap-2">
+      <div className="flex items-center justify-center w-full h-16 bg-transparent text-gray-500 overflow-hidden gap-2 flex-wrap sm:h-24">
         {imageTypes.map((imageType) => (
           <ul key={imageType.name}>
             <li
-              className={`h-9 flex justify-center items-center font-[500] leading-[14.8px] rounded-2xl cursor-pointer mr-2 text-sm p-3 ${
+              className={`h-9 flex justify-center items-center font-[500] rounded-2xl cursor-pointer mr-2 text-sm p-3 ${
                 selectedType === imageType.name ? "text-black bg-gray-200" : ""
               }`}
               onClick={() => handleTypeClick(imageType.name)}

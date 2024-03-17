@@ -72,7 +72,7 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
             key={dataId.id}
             className="fixed top-0 left-0 w-full h-full bg-[#000000] bg-opacity-40 flex items-center justify-center z-20"
           >
-            <div className="w-[1100px] h-auto pb-6 bg-white z-10 rounded-[8.89px] sm:max-w-[90%]">
+            <div className="w-[1100px] h-auto pb-6 bg-white z-10 rounded-[8.89px] sm:w-[95%] sm:h-[90%]">
               <div className="flex items-center justify-between w-full h-[50px] bg-[#F5F5F5] p-7 rounded-[8.89px]">
                 <div className="text-[21.33px] font-[500]">
                   Preview ID: {dataId.id}
@@ -81,7 +81,7 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                   <img src={CrossIcon} alt="back" />
                 </button>
               </div>
-              <div className="w-full flex justify-evenly flex-wrap sm:flex-col sm:items-center mt-4">
+              <div className="w-full flex justify-evenly flex-wrap mt-4 sm:mt-2">
                 {dataId.type === "film" || dataId.type === "animation" ? (
                   <video
                     src={dataId?.videos?.tiny?.url}
@@ -93,10 +93,10 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                   <img
                     src={dataId.webformatURL}
                     alt="Image"
-                    className="w-[700px] h-[480px]"
+                    className="w-[700px] h-[480px] sm:w-36 sm:h-36"
                   />
                 )}
-                <div className="sm:w-[40%] max-w-[30%] flex flex-col justify-between">
+                <div className="max-w-[30%] flex flex-col justify-between sm:max-w-[95%]">
                   {
                     <div className="flex justify-center gap-4 flex-col">
                       <span className="text-lg font-semibold font-serif">
@@ -153,7 +153,7 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                       )}
                     </div>
                   }
-                  <div className="w-full h-52 text-sm mt-2 sm:mt-0 sm:text-xs">
+                  <div className="w-full h-52 text-sm mt-2 sm:mt-2 sm:text-xs">
                     <span className="text-lg font-semibold font-serif">
                       Information:
                     </span>

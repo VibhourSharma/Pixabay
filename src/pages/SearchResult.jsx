@@ -36,7 +36,7 @@ const SearchResult = () => {
   return (
     <div className="bg-black">
       <Navbar />
-      <div className="mt-[-49px] mb-4">
+      <div className="mt-[-49px] sm:mt-[-26px] mb-4 sm:w-[85%] sm:m-8">
         <Search />
       </div>
       <SearchName search={search} />

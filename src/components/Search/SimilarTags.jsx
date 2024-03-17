@@ -17,7 +17,7 @@ const SimilarTags = ({ tags }) => {
                     : `/search?search=${name}`
                 }
               >
-                <li className="p-4 h-[30px] flex justify-center items-center border-[#D1D1D1] border-[2px] rounded-md cursor-pointer hover:border-black transition-all text-sm">
+                <li className="p-4 h-[30px] flex justify-center items-center border-[#D1D1D1] border-[2px] rounded-md cursor-pointer hover:border-black transition-all text-sm sm:text-xs">
                   {name}
                 </li>
               </Link>

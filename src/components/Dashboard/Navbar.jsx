@@ -54,15 +54,15 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center w-full text-[#FFFFFF] md:text-[13px] z-10">
-        <div className="flex items-center justify-between p-8 h-[60px] w-full">
+      <div className="flex items-center justify-center w-full text-[#FFFFFF] z-10">
+        <div className="flex items-center justify-between p-8 h-[60px] w-full sm:p-2">
           <Link to="/">
-            <img src={pixabayLogo} alt="Pixabay" className="w-32" />
+            <img src={pixabayLogo} alt="Pixabay" className="w-32 sm:w-24" />
           </Link>
 
-          <div className="w-[30%] flex items-center justify-end gap-4">
+          <div className="w-[30%] sm:w-[80%] flex items-center justify-end gap-4">
             {firebase.isLoggedIn ? (
-              <div className="flex justify-around w-52">
+              <div className="flex justify-around w-52 sm:text-sm sm:justify-end sm:w-0 sm:gap-4">
                 <Link to="/favourites">
                   <div>Favourites</div>
                 </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
             )}
             {firebase.isLoggedIn ? (
               <button
-                className="py-1.5 px-4 rounded-lg border-2 font[600] md:w-28 lg:w-32"
+                className="py-1.5 px-4 rounded-lg border-2 font[600] sm:px-1 sm:py-1 sm:text-xs"
                 onClick={logOut}
               >
                 Log Out
@@ -83,13 +83,13 @@ const Navbar = () => {
             ) : (
               <>
                 <button
-                  className="font-[500] p-1 rounded-lg hover:underline transition-all"
+                  className="font-[500] p-1 rounded-lg hover:underline transition-all sm:text-sm"
                   onClick={openLoginModal}
                 >
                   LogIn
                 </button>
                 <button
-                  className="py-1.5 px-4 rounded-lg border-2 font-[600]"
+                  className="py-1.5 px-4 rounded-lg border-2 font-[600] sm:px-1 sm:py-1 sm:text-xs"
                   onClick={openSignIn}
                 >
                   Create Account
@@ -99,8 +99,20 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {loginModalOpen && <LoginPage onClose={closeLoginModal} error={error} />}
-      {signInModalOpen && <SignupPage onClose={closeSignIn} error={error} />}
+      {loginModalOpen && (
+        <LoginPage
+          onClose={closeLoginModal}
+          openSignIn={openSignIn}
+          error={error}
+        />
+      )}
+      {signInModalOpen && (
+        <SignupPage
+          onClose={closeSignIn}
+          openLoginModal={openLoginModal}
+          error={error}
+        />
+      )}
     </>
   );
 };

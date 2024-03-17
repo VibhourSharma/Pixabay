@@ -27,7 +27,7 @@ const categories = [
 const CategorySearch = () => {
   return (
     <div className="flex items-center justify-center">
-      <div className="flex items-center px-9 gap-2 py-2 w-[90%] overflow-x-scroll no-scrollbar">
+      <div className="flex items-center px-9 gap-2 py-2 w-[90%] overflow-x-scroll no-scrollbar sm:px-2 sm:w-full">
         {categories.map((category) => {
           return (
             <ul key={category}>

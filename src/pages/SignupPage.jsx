@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import googleSvg from "../assets/google.svg";
 import { useFirebase } from "../context/Firebase";
 
-const SignupForm = ({ onClose, error }) => {
+const SignupForm = ({ onClose, openLoginModal, error }) => {
   const firebase = useFirebase();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +10,11 @@ const SignupForm = ({ onClose, error }) => {
   const handleSignInSubmit = async (e) => {
     e.preventDefault();
     await firebase.signUpWithEmailAndPassword(email, password);
+  };
+
+  const openLogIn = () => {
+    onClose();
+    openLoginModal();
   };
 
   return (
@@ -21,7 +26,7 @@ const SignupForm = ({ onClose, error }) => {
             {error}
           </div>
         )}
-        <div className="relative bg-white w-96 rounded-lg shadow-xl">
+        <div className="relative bg-white w-96 rounded-lg shadow-xl sm:w-[90%]">
           <div className="p-8">
             <div className="flex w-full justify-between items-center mb-6">
               <h2 className="text-2xl font-bold">Pixabay</h2>
@@ -97,10 +102,9 @@ const SignupForm = ({ onClose, error }) => {
             {/* Sign In Option */}
             <p className="text-gray-600 mt-6">
               Already have an account? Sign in{" "}
-              <a href="#" className="text-blue-500">
+              <p className="text-blue-500" onClick={openLogIn}>
                 here
-              </a>
-              .
+              </p>
             </p>
           </div>
         </div>

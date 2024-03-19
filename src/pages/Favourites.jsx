@@ -93,7 +93,7 @@ const FavoritesPage = () => {
                       </span>
                     </div>
                     <div className="px-2 py-1 text-sm text-gray-500">
-                      Added On: {new Date().toLocaleString()}
+                      Added On: {favorite.time}
                     </div>
                   </div>
                 ))}

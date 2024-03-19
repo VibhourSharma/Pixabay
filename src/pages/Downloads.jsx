@@ -93,7 +93,7 @@ const DownloadsPage = () => {
                       </span>
                     </div>
                     <div className="px-2 py-1 text-sm text-gray-500">
-                      Last Downloaded: {new Date().toLocaleString()}
+                      Last Downloaded: {download.time}
                     </div>
                   </div>
                 ))}

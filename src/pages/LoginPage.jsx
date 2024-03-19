@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import googleSvg from "../assets/google.svg";
 import { useFirebase } from "../context/Firebase";
 
@@ -11,6 +11,7 @@ const LoginPage = ({ onClose, openSignIn, error }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     await firebase.logInWithEmailAndPassword(email, password);
+    setShowNotification(true);
   };
 
   const openSignInModal = () => {
@@ -99,7 +100,10 @@ const LoginPage = ({ onClose, openSignIn, error }) => {
             {/* <!-- Sign up option --> */}
             <p className="text-gray-600 mt-8">
               Don't have an account? Sign up{" "}
-              <p className="text-blue-500" onClick={openSignInModal}>
+              <p
+                className="text-blue-500 cursor-pointer"
+                onClick={openSignInModal}
+              >
                 here
               </p>
             </p>

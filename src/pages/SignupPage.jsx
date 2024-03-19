@@ -102,7 +102,7 @@ const SignupForm = ({ onClose, openLoginModal, error }) => {
             {/* Sign In Option */}
             <p className="text-gray-600 mt-6">
               Already have an account? Sign in{" "}
-              <p className="text-blue-500" onClick={openLogIn}>
+              <p className="text-blue-500 cursor-pointer" onClick={openLogIn}>
                 here
               </p>
             </p>

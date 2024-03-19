@@ -46,7 +46,13 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
       firebase.removeFromFavorites(imageId);
     } else {
       const imageUrlToAdd = imageURL || videoURL;
-      firebase.addToFavorites(imageId, imageUrlToAdd, idData[0]?.type);
+      const currentTime = new Date().toString();
+      firebase.addToFavorites(
+        imageId,
+        imageUrlToAdd,
+        idData[0]?.type,
+        currentTime
+      );
     }
     setIsFavorite(!isFavorite);
   };
@@ -57,7 +63,13 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
     const videoURL = idData[0]?.videos?.tiny?.url;
 
     const imageUrlToAdd = imageURL || videoURL;
-    firebase.addToDownloads(imageId, imageUrlToAdd, idData[0]?.type);
+    const currentTime = new Date().toString();
+    firebase.addToDownloads(
+      imageId,
+      imageUrlToAdd,
+      idData[0]?.type,
+      currentTime
+    );
 
     setIsDownload(!isDownload);
   };
@@ -124,9 +136,9 @@ const ImageDetail = ({ id, handleCloseModal, type }) => {
                           </button>
                           <button
                             className={`hover:scale-[0.98] w-[274.67px] rounded-lg p-2 bg-white text-${
-                              isFavorite ? "red" : "green"
+                              isFavorite ? "red" : "blue"
                             }-600 text-sm ease-in-out transition-all border-${
-                              isFavorite ? "red" : "green"
+                              isFavorite ? "red" : "blue"
                             }-600 border`}
                             onClick={() =>
                               handleAddFavorite(

@@ -40,6 +40,15 @@ export const useFirebase = () => useContext(FirebaseContext);
 export const FirebaseProvider = (props) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
+  const [showNotification, setShowNotification] = useState(false);
+
+  useEffect(() => {
+    if (showNotification) {
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+    }
+  }, [showNotification]);
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
@@ -48,7 +57,7 @@ export const FirebaseProvider = (props) => {
     });
   }, []);
 
-  const addToFavorites = async (imageId, imageURL, imageType) => {
+  const addToFavorites = async (imageId, imageURL, imageType, currentTime) => {
     try {
       await setDoc(
         doc(firestore, "users", user.uid),
@@ -57,6 +66,7 @@ export const FirebaseProvider = (props) => {
             id: imageId,
             url: imageURL,
             type: imageType,
+            time: currentTime,
           }),
         },
         { merge: true }
@@ -102,7 +112,7 @@ export const FirebaseProvider = (props) => {
     }
   };
 
-  const addToDownloads = async (imageId, imageURL, imageType) => {
+  const addToDownloads = async (imageId, imageURL, imageType, currentTime) => {
     try {
       await setDoc(
         doc(firestore, "users", user.uid),
@@ -111,6 +121,7 @@ export const FirebaseProvider = (props) => {
             id: imageId,
             url: imageURL,
             type: imageType,
+            time: currentTime,
           }),
         },
         { merge: true }
@@ -211,6 +222,8 @@ export const FirebaseProvider = (props) => {
         addToDownloads,
         getDownloads,
         removeFromDownloads,
+        showNotification,
+        setShowNotification,
       }}
     >
       {props.children}

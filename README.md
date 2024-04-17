@@ -1,6 +1,6 @@
 ![Screenshot (46)](https://github.com/VibhourSharma/Pixabay/assets/110191186/ecdffefb-ce11-46a6-93fd-92302e05eb90)
 
-## **Project Overview**
+## **Project Overview:**  *Use test@email.com and Password: test@123 to login*
 This project showcases my implementation of the Rocket Moonshot Test using ReactJS, Tailwind CSS, and Firebase. I have successfully met all project requirements, demonstrating proficiency in various aspects of web development.
 
 - **Firebase Authentication:** Secure email and Google sign-in or log-in.

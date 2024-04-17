@@ -20,12 +20,12 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDrJHjZvdGZS4QigT-m0-JsksI8EcnIuWs",
-  authDomain: "pixabay-46c9c.firebaseapp.com",
-  projectId: "pixabay-46c9c",
-  storageBucket: "pixabay-46c9c.appspot.com",
-  messagingSenderId: "10723072473",
-  appId: "1:10723072473:web:4a1c24b990f9cf5365a1c8",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_PIXABAY_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PIXABAY_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_PIXABAY_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_PIXABAY_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_PIXABAY_APP_ID,
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

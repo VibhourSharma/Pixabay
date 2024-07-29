@@ -40,7 +40,7 @@ const CardLayout = ({ searchResults, isHomePage }) => {
               <video
                 src={results.videos?.tiny?.url}
                 alt={`Video number: ${results.id}`}
-                className="h-[242.61px]"
+                className="h-[242.61px] cursor-pointer"
                 onClick={() => handleDataClick(results.id, results.type)}
                 controls
               />

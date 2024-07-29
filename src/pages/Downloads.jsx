@@ -71,7 +71,7 @@ const DownloadsPage = () => {
                       <video
                         src={download.url}
                         alt={`Video number: ${download.id}`}
-                        className="h-[242.61px] object-cover"
+                        className="h-[242.61px] object-cover rounded-xl cursor-pointer"
                         controls
                       />
                     ) : (

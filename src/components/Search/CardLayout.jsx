@@ -33,14 +33,14 @@ const CardLayout = ({ searchResults, isHomePage }) => {
       <div className="flex items-center p-8 gap-4 flex-wrap justify-center bg-[#ffffff]">
         {searchResults.map((results) => (
           <div
-            className="w-[350px] flex flex-col justify-center bg-cover"
+            className="w-[350px] flex flex-col justify-center bg-cover rounded-xl"
             key={results.id}
           >
             {results.type === "animation" || results.type === "film" ? (
               <video
                 src={results.videos?.tiny?.url}
                 alt={`Video number: ${results.id}`}
-                className="h-[242.61px] cursor-pointer"
+                className="h-[242.61px] cursor-pointer rounded-xl object-fill object-center"
                 onClick={() => handleDataClick(results.id, results.type)}
                 controls
               />
@@ -48,19 +48,22 @@ const CardLayout = ({ searchResults, isHomePage }) => {
               <img
                 src={results.webformatURL}
                 alt={`Image number: ${results.id}`}
-                className="h-[242.61px] object-cover cursor-pointer"
+                className="h-[242.61px] object-fill object-center cursor-pointer rounded-xl"
                 onClick={() => handleDataClick(results.id, results.type)}
               />
             )}
-            <div className="flex w-full items-center gap-2">
-              {results.tags.split(",").map((tag) => (
-                <span
-                  className="rounded-md p-1.5 mt-2 bg-[#F5F5F5] text-[13px] overflow-hidden"
-                  key={tag}
-                >
-                  {tag.trim()}
-                </span>
-              ))}
+            <div className="flex items-center w-full gap-2 overflow-hidden">
+              {results.tags
+                .split(",")
+                .slice(0, 4)
+                .map((tag) => (
+                  <span
+                    className="rounded-md p-1.5 mt-2 min-w-fit bg-[#F5F5F5] text-[13px]"
+                    key={tag}
+                  >
+                    {tag.trim()}
+                  </span>
+                ))}
             </div>
           </div>
         ))}
